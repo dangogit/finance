@@ -2,14 +2,17 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>תכנית פיתוח חודשית – פלטפורמת ליווי פיננסי</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
   
   :root {
-    --primary: #2563eb;
+    --primary: #3b82f6;
     --primary-dark: #1e40af;
     --secondary: #0f172a;
+    --secondary-light: #1e293b;
     --light: #f8fafc;
     --gray-100: #f1f5f9;
     --gray-200: #e2e8f0;
@@ -18,24 +21,66 @@
     --danger: #ef4444;
     --warning: #f59e0b;
     --success: #10b981;
-    --radius: 8px;
+    --whatsapp: #25D366;
+    --radius: 10px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+  }
+  
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   
   body {
     font-family: 'Heebo', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f0f4f8;
+    background: #f8fafc;
     color: var(--secondary);
-    line-height: 1.6;
+    line-height: 1.7;
+    overflow-x: hidden;
   }
   
   header {
-    background: linear-gradient(135deg, var(--secondary) 0%, #1a365d 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, #1e3a8a 100%);
     color: #fff;
-    padding: 32px;
+    padding: 60px 20px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  
+  header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(66, 153, 225, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, 
+      rgba(59, 130, 246, 0.3) 0%, 
+      rgba(16, 185, 129, 0.3) 25%, 
+      rgba(245, 158, 11, 0.3) 50%, 
+      rgba(139, 92, 246, 0.3) 75%, 
+      rgba(59, 130, 246, 0.3) 100%);
+    z-index: 10;
   }
   
   h1, h2, h3 {
@@ -44,37 +89,89 @@
   }
   
   h1 {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  h1::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    display: none;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    color: var(--secondary);
+    position: relative;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  
+  h2::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    right: 0;
+    width: 60%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    display: none;
   }
   
   header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    font-size: 1.25rem;
+    opacity: 0.95;
     max-width: 800px;
     margin: 0 auto;
   }
   
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
   section {
     background: #fff;
-    margin: 24px auto;
-    padding: 32px;
+    margin: 40px auto;
+    padding: 40px;
     border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    max-width: 1000px;
+    box-shadow: var(--shadow-md);
+    max-width: 1100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  section:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
   }
   
   table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 24px;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-sm);
+    border-radius: var(--radius);
+    overflow: hidden;
   }
   
   th, td {
     border: 1px solid var(--gray-200);
-    padding: 12px;
+    padding: 16px;
     text-align: center;
   }
   
@@ -82,18 +179,30 @@
     background: var(--gray-100);
     font-weight: 600;
     color: var(--secondary);
+    white-space: nowrap;
+    transition: var(--transition);
+  }
+  
+  tr {
+    transition: var(--transition);
   }
   
   tr:hover {
-    background-color: rgba(0, 0, 0, 0.01);
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+  
+  tr:nth-child(even) {
+    background-color: var(--gray-100);
   }
   
   .badge {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 0.8rem;
     font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: var(--shadow-sm);
   }
   
   .risk-high {
@@ -123,207 +232,475 @@
   }
   
   li {
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    list-style-type: none;
+  }
+  
+  li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.5em;
+    margin-right: 8px;
   }
   
   footer {
     text-align: center;
-    font-size: 14px;
-    margin: 32px;
+    font-size: 0.95rem;
+    margin: 48px auto 100px;
     color: var(--gray-700);
+    max-width: 800px;
+    position: relative;
   }
   
   .price-container {
-    background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
     color: white;
-    padding: 24px;
+    padding: 40px 32px;
     border-radius: var(--radius);
     text-align: center;
     margin: 36px auto;
     max-width: 500px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .price-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .price-container:hover {
+    transform: translateY(-5px);
   }
   
   .price-title {
-    font-size: 1.2rem;
-    margin-bottom: 12px;
-    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
   
   .price-amount {
-    font-size: 2.4rem;
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    position: relative;
+    display: inline-block;
+  }
+  
+  .price-amount::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
   }
   
   .price-details {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    font-size: 1rem;
+    opacity: 0.95;
+    line-height: 1.7;
+  }
+  
+  .price-details ul {
+    text-align: right;
+    list-style-position: inside;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .price-details ul li {
+    margin-bottom: 12px;
+    position: relative;
+  }
+  
+  .price-details ul li::before {
+    content: "✓";
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-right: 8px;
   }
   
   .contact-email {
-    display: block;
-    margin-top: 12px;
+    display: inline-block;
+    margin-top: 16px;
     color: var(--primary);
     text-decoration: none;
     font-weight: 500;
+    transition: var(--transition);
+    padding: 10px 18px;
+    border-radius: 30px;
+    background-color: rgba(59, 130, 246, 0.1);
   }
   
   .contact-email:hover {
-    text-decoration: underline;
+    color: var(--primary-dark);
+    background-color: rgba(59, 130, 246, 0.15);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  /* Support plans styles */
+  .support-plans-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .plan-card {
+    flex: 1;
+    min-width: 280px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  
+  .plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .plan-basic {
+    background: linear-gradient(135deg, #1e40af, #3b82f6);
+  }
+  
+  .plan-advanced {
+    background: linear-gradient(135deg, #0f766e, #0ea5e9);
+  }
+  
+  .plan-premium {
+    background: linear-gradient(135deg, #7e22ce, #8b5cf6);
+  }
+  
+  .plan-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  
+  .separator {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gray-200), transparent);
+    margin: 40px 0;
+  }
+  
+  .whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--whatsapp);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+    text-decoration: none;
+  }
+  
+  .whatsapp-button:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    section {
+      padding: 30px 20px;
+      margin: 20px 15px;
+    }
+    
+    h1 {
+      font-size: 2rem;
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+    }
+    
+    .support-plans-container {
+      flex-direction: column;
+    }
+    
+    .plan-card {
+      margin-bottom: 20px;
+    }
+    
+    table {
+      font-size: 0.85rem;
+    }
+    
+    th, td {
+      padding: 12px 8px;
+    }
+    
+    .whatsapp-button {
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+    }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>פלטפורמת ליווי פיננסי – תכנית עבודה</h1>
-  <p>מערכת מקצה-לקצה: אינטגרציה לדף נחיתה קיים, סליקה, API ממשלתי, דאשבורד לקוח ואבטחת מידע מלאה</p>
+  <div class="container">
+    <h1>פלטפורמת ליווי פיננסי – תכנית עבודה</h1>
+    <p>מערכת מקצה-לקצה: אינטגרציה לדף נחיתה קיים, סליקה, API ממשלתי, דאשבורד לקוח ואבטחת מידע מלאה</p>
+  </div>
 </header>
 
-<!-- ======================== SUMMARY ======================== -->
-<section>
-  <h2>תקציר</h2>
-  <p>
-    הפרויקט כולל הקמה מלאה (Backend + Frontend) של מערכת ליווי פיננסי.
-    <br>
-    עיקרי הפתרון:
-  </p>
-  <ul>
-    <li>אינטגרציה לדף נחיתה קיים לקליטת לידים וחיבור למערכת התשלומים.</li>
-    <li>ממשק סליקה (Cardcom) וחיוב חודשי אוטומטי.</li>
-    <li>אינטגרציה ל-API הממשלתי ("הר הביטוח/פנסיה") למשיכת נתוני חסכונות.</li>
-    <li>דאשבורד לקוח להצגת נתונים ותובנות.</li>
-    <li>חתימה דיגיטלית על הסכם ליווי באמצעות Canvas מובנה.</li>
-    <li>אחסון מסמכים ונתונים מאובטח ב-Supabase + Role-Based Access.</li>
-    <li>ניהול מסמכים חתומים ותזכורות אוטומטיות.</li>
-  </ul>
-</section>
+<div class="container">
+  <!-- ======================== SUMMARY ======================== -->
+  <section>
+    <h2>תקציר</h2>
+    <p>
+      הפרויקט כולל הקמה מלאה (Backend + Frontend) של מערכת ליווי פיננסי.
+      <br>
+      עיקרי הפתרון:
+    </p>
+    <ul>
+      <li>אינטגרציה לדף נחיתה קיים לקליטת לידים וחיבור למערכת התשלומים.</li>
+      <li>ממשק סליקה (Cardcom) וחיוב חודשי אוטומטי.</li>
+      <li>אינטגרציה ל-API הממשלתי ("הר הביטוח/פנסיה") למשיכת נתוני חסכונות.</li>
+      <li>דאשבורד לקוח להצגת נתונים ותובנות.</li>
+      <li>חתימה דיגיטלית על הסכם ליווי באמצעות Canvas מובנה.</li>
+      <li>אחסון מסמכים ונתונים מאובטח ב-Supabase + Role-Based Access.</li>
+      <li>ניהול מסמכים חתומים ותזכורות אוטומטיות.</li>
+    </ul>
+  </section>
 
-<!-- ======================== DAILY PLAN ======================== -->
-<section>
-  <h2>לוח זמנים יומי</h2>
-  <table>
-    <thead>
-      <tr><th>יום</th><th>משימה</th><th>תוצר</th><th>סיכונים</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>1</td><td>הקמת ריפו, CI (GitHub Actions), תבנית Next.js 14 + ‎Tailwind</td><td>סביבה רצה בענן</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>2</td><td>Supabase פרויקט, סכמת DB ראשונית</td><td>Prisma schema</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>3</td><td>יישום Auth &#x26; RBAC עם Supabase</td><td>Sessions מאובטחים</td><td class="risk-medium">בינוני</td></tr>
-      <tr><td>4-5</td><td>Cardcom – יצירת אסימון API, תשלום בדיקה</td><td>Txn מוצלחת</td><td class="risk-high">גבוה</td></tr>
-      <tr><td>6</td><td>API Contract (OpenAPI) בין FE↔BE</td><td>‎/swagger</td><td class="risk-low">נמוך</td></tr>
+  <!-- ======================== DAILY PLAN ======================== -->
+  <section>
+    <h2>לוח זמנים יומי</h2>
+    <table>
+      <thead>
+        <tr><th>יום</th><th>משימה</th><th>תוצר</th><th>סיכונים</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>הקמת ריפו, CI (GitHub Actions), תבנית Next.js 14 + ‎Tailwind</td><td>סביבה רצה בענן</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>2</td><td>Supabase פרויקט, סכמת DB ראשונית</td><td>Prisma schema</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>3</td><td>יישום Auth &#x26; RBAC עם Supabase</td><td>Sessions מאובטחים</td><td class="risk-medium">בינוני</td></tr>
+        <tr><td>4-5</td><td>Cardcom – יצירת אסימון API, תשלום בדיקה</td><td>Txn מוצלחת</td><td class="risk-high">גבוה</td></tr>
+        <tr><td>6</td><td>API Contract (OpenAPI) בין FE↔BE</td><td>‎/swagger</td><td class="risk-low">נמוך</td></tr>
 
-      <tr><td>7-8</td><td>בדיקת מסמכי Gov API, PoC OAuth</td><td>Token ממשלתי</td><td class="risk-high">גבוה</td></tr>
-      <tr><td>9</td><td>Fetcher לחסכונות (קרן השתלמות, קופ״ג)</td><td>JSON גולמי</td><td class="risk-medium">בינוני</td></tr>
-      <tr><td>10</td><td>שמירת נתונים, אינדקסים, Cron עדכון חודשי</td><td>Historical Table</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>11</td><td>חיבור מסך לוח־מחוונים (React Charts)</td><td>גרף מאזנים</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>12</td><td>אינטגרציה לדף נחיתה קיים וקליטת לידים</td><td>API מחובר</td><td class="risk-medium">בינוני</td></tr>
+        <tr><td>7-8</td><td>בדיקת מסמכי Gov API, PoC OAuth</td><td>Token ממשלתי</td><td class="risk-high">גבוה</td></tr>
+        <tr><td>9</td><td>Fetcher לחסכונות (קרן השתלמות, קופ״ג)</td><td>JSON גולמי</td><td class="risk-medium">בינוני</td></tr>
+        <tr><td>10</td><td>שמירת נתונים, אינדקסים, Cron עדכון חודשי</td><td>Historical Table</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>11</td><td>חיבור מסך לוח־מחוונים (React Charts)</td><td>גרף מאזנים</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>12</td><td>אינטגרציה לדף נחיתה קיים וקליטת לידים</td><td>API מחובר</td><td class="risk-medium">בינוני</td></tr>
 
-      <tr><td>13</td><td>יישום Canvas לחתימה דיגיטלית ואחסון ב-Supabase</td><td>מסמכים חתומים</td><td class="risk-medium">בינוני</td></tr>
-      <tr><td>14-15</td><td>אבטחת מידע: CSP, ‎Rate-Limit, Audit Logs</td><td>OWASP Top-10 צומצם</td><td class="risk-high">גבוה</td></tr>
-      <tr><td>16</td><td>התראות במייל (Postmark) ומסמכי PDF</td><td>Invoice + הסכם</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>17</td><td>Layer תצוגות יועץ (Back-Office)</td><td>טבלת לקוחות</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>18</td><td>בדיקות יחידה/אינטגרציה (Vitest + Playwright)</td><td>90 % כיסוי</td><td class="risk-low">נמוך</td></tr>
-      <tr><td>19</td><td>תיקוני באגים ופוליש UI</td><td>מודול יציב</td><td class="risk-medium">בינוני</td></tr>
-      <tr><td>20</td><td>דפלוי Production והדרכת לקוח</td><td><span class="badge done">השקה</span></td><td class="risk-medium">בינוני</td></tr>
-    </tbody>
-  </table>
-</section>
+        <tr><td>13</td><td>יישום Canvas לחתימה דיגיטלית ואחסון ב-Supabase</td><td>מסמכים חתומים</td><td class="risk-medium">בינוני</td></tr>
+        <tr><td>14-15</td><td>אבטחת מידע: CSP, ‎Rate-Limit, Audit Logs</td><td>OWASP Top-10 צומצם</td><td class="risk-high">גבוה</td></tr>
+        <tr><td>16</td><td>התראות במייל (Postmark) ומסמכי PDF</td><td>Invoice + הסכם</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>17</td><td>Layer תצוגות יועץ (Back-Office)</td><td>טבלת לקוחות</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>18</td><td>בדיקות יחידה/אינטגרציה (Vitest + Playwright)</td><td>90 % כיסוי</td><td class="risk-low">נמוך</td></tr>
+        <tr><td>19</td><td>תיקוני באגים ופוליש UI</td><td>מודול יציב</td><td class="risk-medium">בינוני</td></tr>
+        <tr><td>20</td><td>דפלוי Production והדרכת לקוח</td><td><span class="badge done">השקה</span></td><td class="risk-medium">בינוני</td></tr>
+      </tbody>
+    </table>
+  </section>
 
-<!-- ======================== WEEKLY MILESTONES ======================== -->
-<section>
-  <h2>אבני דרך שבועיות</h2>
-  <ul>
-    <li><strong>סוף שבוע 1 –</strong> Auth, בסיס נתונים, סליקה Cardcom.</li>
-    <li><strong>סוף שבוע 2 –</strong> משיכת נתוני API ממשלתי, לוח-מחוונים ראשוני, אינטגרציה לדף נחיתה.</li>
-    <li><strong>סוף שבוע 3 –</strong> חתימה דיגיטלית, Back-Office, אבטחת מידע.</li>
-    <li><strong>סוף שבוע 4 –</strong> בדיקות ואוטומציה, תיקונים, Production.</li>
-  </ul>
-</section>
+  <!-- ======================== WEEKLY MILESTONES ======================== -->
+  <section>
+    <h2>אבני דרך שבועיות</h2>
+    <ul>
+      <li><strong>סוף שבוע 1 –</strong> Auth, בסיס נתונים, סליקה Cardcom.</li>
+      <li><strong>סוף שבוע 2 –</strong> משיכת נתוני API ממשלתי, לוח-מחוונים ראשוני, אינטגרציה לדף נחיתה.</li>
+      <li><strong>סוף שבוע 3 –</strong> חתימה דיגיטלית, Back-Office, אבטחת מידע.</li>
+      <li><strong>סוף שבוע 4 –</strong> בדיקות ואוטומציה, תיקונים, Production.</li>
+    </ul>
+  </section>
 
-<!-- ======================== TOOLS & COSTS ======================== -->
-<section>
-  <h2>כלים ותמחור</h2>
-  <table>
-    <thead>
-      <tr><th>כלי</th><th>שכבת חינם</th><th>שכבה מקצועית</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Supabase</td>
-        <td>0 $ / 500 MB</td>
-        <td>25 $ / חודש – Pro Plan (כולל אחסון מסמכים)</td>
-      </tr>
-      <tr>
-        <td>Vercel</td>
-        <td>0 $ / 100 GB-hr</td>
-        <td>20 $ / חודש – Pro</td>
-      </tr>
-      <tr>
-        <td>Cardcom סליקה</td>
-        <td>נדרש חשבון סוחר</td>
-        <td>עמלות ~2 %-2.5 % לעסקה</td>
-      </tr>
-      <tr>
-        <td>GitHub Actions</td>
-        <td>2k דקות</td>
-        <td>4 $ / חודש – Teams</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <!-- ======================== TOOLS & COSTS ======================== -->
+  <section>
+    <h2>כלים ותמחור</h2>
+    <table>
+      <thead>
+        <tr><th>כלי</th><th>שכבת חינם</th><th>שכבה מקצועית</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Supabase</td>
+          <td>0 $ / 500 MB</td>
+          <td>25 $ / חודש – Pro Plan (כולל אחסון מסמכים)</td>
+        </tr>
+        <tr>
+          <td>Vercel</td>
+          <td>0 $ / 100 GB-hr</td>
+          <td>20 $ / חודש – Pro</td>
+        </tr>
+        <tr>
+          <td>Cardcom סליקה</td>
+          <td>נדרש חשבון סוחר</td>
+          <td>עמלות ~2 %-2.5 % לעסקה</td>
+        </tr>
+        <tr>
+          <td>GitHub Actions</td>
+          <td>2k דקות</td>
+          <td>4 $ / חודש – Teams</td>
+        </tr>
+        <tr>
+          <td>Postmark (שירות דוא״ל)</td>
+          <td>100 הודעות / חודש (חינם)</td>
+          <td>10 $ / חודש (10K הודעות)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-<!-- ======================== RISKS ======================== -->
-<section>
-  <h2>סיכונים וצעדי מניעה</h2>
-  <table>
-    <thead>
-      <tr><th>סיכון</th><th>דרגת חומרה</th><th>התגוננות</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>שינויים / קצב מכסה ב-API ממשלתי</td>
-        <td class="risk-high">גבוה</td>
-        <td>Caching + Job Queue לפולינג מתוזמן</td>
-      </tr>
-      <tr>
-        <td>כישלון סליקה</td>
-        <td class="risk-medium">בינוני</td>
-        <td>Retry + WebHook Fallback</td>
-      </tr>
-      <tr>
-        <td>היבטי רגולציה פיננסית</td>
-        <td class="risk-high">גבוה</td>
-        <td>אימוץ ISO 27001, הצפנת AES-256, ביקורת גישה</td>
-      </tr>
-      <tr>
-        <td>אינטגרציה לדף נחיתה קיים</td>
-        <td class="risk-medium">בינוני</td>
-        <td>יצירת API מובנה להתחברות + התממשקות הדדית</td>
-      </tr>
-      <tr>
-        <td>אבטחת מסמכים</td>
-        <td class="risk-high">גבוה</td>
-        <td>הצפנה, הרשאות גישה מוגדרות, לוג גישה</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+  <!-- ======================== RISKS ======================== -->
+  <section>
+    <h2>סיכונים וצעדי מניעה</h2>
+    <table>
+      <thead>
+        <tr><th>סיכון</th><th>דרגת חומרה</th><th>התגוננות</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>שינויים / קצב מכסה ב-API ממשלתי</td>
+          <td class="risk-high">גבוה</td>
+          <td>Caching + Job Queue לפולינג מתוזמן</td>
+        </tr>
+        <tr>
+          <td>כישלון סליקה</td>
+          <td class="risk-medium">בינוני</td>
+          <td>Retry + WebHook Fallback</td>
+        </tr>
+        <tr>
+          <td>היבטי רגולציה פיננסית</td>
+          <td class="risk-high">גבוה</td>
+          <td>אימוץ ISO 27001, הצפנת AES-256, ביקורת גישה</td>
+        </tr>
+        <tr>
+          <td>אינטגרציה לדף נחיתה קיים</td>
+          <td class="risk-medium">בינוני</td>
+          <td>יצירת API מובנה להתחברות + התממשקות הדדית</td>
+        </tr>
+        <tr>
+          <td>אבטחת מסמכים</td>
+          <td class="risk-high">גבוה</td>
+          <td>הצפנה, הרשאות גישה מוגדרות, לוג גישה</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-<!-- ======================== PRICING ======================== -->
-<section>
-  <div class="price-container">
-    <div class="price-title">השקעה חד פעמית</div>
-    <div class="price-amount">₪20,000</div>
-    <div class="price-details">כולל פיתוח מלא, בדיקות, ותמיכה ראשונית</div>
-  </div>
-</section>
+  <!-- ======================== PRICING ======================== -->
+  <section>
+    <div class="price-container">
+      <div class="price-title">השקעה ראשונית</div>
+      <div class="price-amount">₪20,000</div>
+      <div class="price-details">כולל פיתוח מלא, בדיקות, ותמיכה ראשונית</div>
+    </div>
+  </section>
+
+  <!-- ======================== SUPPORT PLANS ======================== -->
+  <section>
+    <h2>תכניות תמיכה ופיתוח מתמשך</h2>
+    
+    <div class="support-plans-container">
+      <div class="price-container plan-card plan-basic">
+        <div class="price-title">תכנית בסיסית</div>
+        <div class="price-amount">₪5,000</div>
+        <div class="price-details">
+          <ul>
+            <li>20 שעות פיתוח חודשיות</li>
+            <li>זמן תגובה תוך 48 שעות</li>
+            <li>תמיכה בווטסאפ</li>
+            <li>תחזוקה שוטפת</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="price-container plan-card plan-advanced">
+        <div class="price-title">תכנית מתקדמת</div>
+        <div class="price-amount">₪10,000</div>
+        <div class="price-details">
+          <ul>
+            <li>40 שעות פיתוח חודשיות</li>
+            <li>זמן תגובה תוך 24 שעות</li>
+            <li>פיתוח פיצ׳רים מתקדמים</li>
+            <li>תמיכה בווטסאפ</li>
+            <li>תחזוקה שוטפת</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="price-container plan-card plan-premium">
+        <div class="price-title">תכנית פרימיום</div>
+        <div class="price-amount">₪20,000</div>
+        <div class="price-details">
+          <ul>
+            <li>80 שעות פיתוח חודשיות</li>
+            <li>זמן תגובה תוך 8 שעות</li>
+            <li>ייעוץ אסטרטגי טכנולוגי</li>
+            <li>מנהל לקוח ייעודי</li>
+            <li>תמיכה טלפונית זמינה</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
 
 <footer>
+  <div class="separator"></div>
   מפותח ע״י דניאל גולדמן – פתרונות SaaS ואוטומציה מתקדמים
   <a href="mailto:danielthegoldman@gmail.com" class="contact-email">danielthegoldman@gmail.com</a>
 </footer>
+
+<a href="https://wa.me/972547505454?text=שלום,%20אני%20מעוניין%20לשמוע%20פרטים%20נוספים%20על%20פיתוח%20מערכת%20ליווי%20פיננסי" target="_blank" class="whatsapp-button" aria-label="צור קשר בווטסאפ">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
 </body>
 </html>
